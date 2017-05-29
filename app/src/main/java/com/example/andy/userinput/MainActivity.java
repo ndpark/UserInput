@@ -1,5 +1,6 @@
 package com.example.andy.userinput;
 
+import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +21,19 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(1);
+        int numberCoffee = 2;
+        display(numberCoffee);
+        displayPrice(numberCoffee * 5);
+    }
+
+    public void increment(View view){
+        TextView quantityTextView = (TextView)findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("3");
+    }
+
+    public void decrement(View view){
+        TextView quantityTextView = (TextView)findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("1");
     }
 
     /**
@@ -30,4 +43,10 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
+
+    private void displayPrice(int number) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
 }
